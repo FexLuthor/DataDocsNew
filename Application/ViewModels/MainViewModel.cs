@@ -7,6 +7,7 @@ using WpfApp3.Services;
 using System;
 using WpfApp3.Views;
 using System.Net;
+using System.Windows;
 
 namespace WpfApp3.ViewModels
 {
@@ -31,12 +32,14 @@ namespace WpfApp3.ViewModels
             NavigateToAddressCommand = new RelayCommand(NavigateToAddress);
             NavigateToImagesCommand = new RelayCommand(NavigateToImages);
             AddPatientCommand = new RelayCommand(AddPatient);
+            LogoutCommand = new RelayCommand(Logout);
         }
 
         public IRelayCommand SearchPatientsCommand { get; }
         public IRelayCommand NavigateToAddressCommand { get; }
         public IRelayCommand NavigateToImagesCommand { get; }
         public IRelayCommand AddPatientCommand { get; }
+        public IRelayCommand LogoutCommand { get; }
         private async Task SearchPatientsAsync()
         {
             if (string.IsNullOrWhiteSpace(SearchQuery))
@@ -98,6 +101,24 @@ namespace WpfApp3.ViewModels
         {
             var addPatientView = new Views.AddPatientView(patients);
             addPatientView.Show();
+        }
+
+        private void Logout()
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var loginWindow = new LoginWindow();
+                loginWindow.Show();
+
+                // Schließen Sie alle Fenster außer das Login-Fenster
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window.GetType() != typeof(LoginWindow))
+                    {
+                        window.Close();
+                    }
+                }
+            });
         }
     }
 }

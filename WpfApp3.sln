@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp3", "WpfApp3.csproj", "{EEEFE8EB-2436-4D9C-9CB7-D1327C9C73C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataDoc", "DataDoc\DataDoc.csproj", "{69387DFE-C834-4924-97AB-811E73AD78AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataDoc", "DataDoc\DataDoc.csproj", "{69387DFE-C834-4924-97AB-811E73AD78AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp3", "Application\WpfApp3.csproj", "{E5742B16-6808-4593-A15D-EDA8958ECBC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EEEFE8EB-2436-4D9C-9CB7-D1327C9C73C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EEEFE8EB-2436-4D9C-9CB7-D1327C9C73C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EEEFE8EB-2436-4D9C-9CB7-D1327C9C73C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EEEFE8EB-2436-4D9C-9CB7-D1327C9C73C1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{69387DFE-C834-4924-97AB-811E73AD78AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{69387DFE-C834-4924-97AB-811E73AD78AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69387DFE-C834-4924-97AB-811E73AD78AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69387DFE-C834-4924-97AB-811E73AD78AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5742B16-6808-4593-A15D-EDA8958ECBC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5742B16-6808-4593-A15D-EDA8958ECBC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5742B16-6808-4593-A15D-EDA8958ECBC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5742B16-6808-4593-A15D-EDA8958ECBC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
