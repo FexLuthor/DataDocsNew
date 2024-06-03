@@ -11,25 +11,25 @@
             <TextBlock Text="Add New Patient" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
 
             <TextBlock Text="First Name:" FontWeight="Bold"/>
-            <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2" />
 
             <TextBlock Text="Last Name:" FontWeight="Bold"/>
-            <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
 
             <TextBlock Text="Birth Date:" FontWeight="Bold"/>
-            <TextBox Text="{Binding BirthDate, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            <TextBox Text="{Binding BirthDate, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
 
             <TextBlock Text="Gender:" FontWeight="Bold"/>
-            <TextBox Text="{Binding Gender, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            <TextBox Text="{Binding Gender, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
 
             <TextBlock Text="Phone:" FontWeight="Bold"/>
-            <TextBox Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            <TextBox Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
 
             <TextBlock Text="Email:" FontWeight="Bold"/>
-            <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
 
             <TextBlock Text="Notes:" FontWeight="Bold"/>
-            <TextBox Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            <TextBox Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <Button Content="Add Patient" Command="{Binding AddPatientCommand}" Width="100" Margin="5" Background="#F5F5F5" BorderBrush="#1E90FF" BorderThickness="2"/>

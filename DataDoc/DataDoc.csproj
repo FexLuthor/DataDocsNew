@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WpfApp3.csproj" />
+    <ProjectReference Include="C:\Users\felix\Desktop\WpfApp3 - Kopie (4)\Application\WpfApp3.csproj" />
   </ItemGroup>
 
 </Project>

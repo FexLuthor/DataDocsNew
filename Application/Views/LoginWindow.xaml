@@ -1,0 +1,27 @@
+﻿<Window x:Class="WpfApp3.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Login" Height="300" Width="400" WindowStartupLocation="CenterScreen"
+        DataContext="{StaticResource LoginViewModel}">
+
+    
+    <Grid Background="AliceBlue">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Ellipse  Height="100"  Width="100" Stroke="Black">
+            <Ellipse.Fill>
+                    <ImageBrush ImageSource="C:\Users\User\Downloads\Logo.png" Stretch="UniformToFill"/>
+            </Ellipse.Fill>
+            </Ellipse>
+            
+            <TextBlock Text="Username" Margin="0,20,0,5"/>
+            <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="0,0,0,15" BorderThickness="0,0,0,2"/>
+
+            <TextBlock Text="Password" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="0,0,0,15" BorderThickness="0,0,0,2"/>
+
+            <Button Content="Login" Width="200" Command="{Binding LoginCommand}" Foreground="White" Background="#FFA500" BorderBrush="#FF8C00"  BorderThickness="2" />
+            <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" Visibility="{Binding ErrorMessage, Converter={StaticResource StringToVisibilityConverter}}" Margin="0,10,0,0"/>
+            
+        </StackPanel>
+    </Grid>
+</Window>

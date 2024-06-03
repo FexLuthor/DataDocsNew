@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using WpfApp3.Models;
 
+//APIkey in a extra dokument 
+
 namespace WpfApp3.Services
 {
     public static class ApiService

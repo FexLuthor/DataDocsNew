@@ -7,7 +7,7 @@
         <vm:MainViewModel />
     </Window.DataContext>
 
-    
+
 
     <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
@@ -15,22 +15,25 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <Button Width="50" Content="Logout" Command="{Binding LogoutCommand}" HorizontalAlignment="Right" Foreground="White" Background="OrangeRed" BorderBrush="DarkRed"  BorderThickness="2" />
+
         <!-- Suchbereich -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10" >
-            <TextBox Width="200" Margin="0,0,10,0" Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" />
-            <Button Width="100" Content="Search" Command="{Binding SearchPatientsCommand}" Foreground="White" Background="#FFA500" BorderBrush="#FF8C00"  BorderThickness="2"/>
-            <Button Width="100" Content="Add Patient" Command="{Binding AddPatientCommand}" Margin="20,0,0,0" Background="#F5F5F5" BorderBrush="#1E90FF" BorderThickness="2"/>
+            <TextBox Width="193" Margin="10,0,10,0" Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Width="100" Content="Search" Command="{Binding SearchPatientsCommand}"  Foreground="White" Background="#FFA500" BorderBrush="#FF8C00"  BorderThickness="2"/>
+            <Button Width="100" Content="Add Patient" Command="{Binding AddPatientCommand}" Margin="20,0,0,0" Foreground="White" Background="DarkSlateBlue" BorderBrush="#1E90FF" BorderThickness="2"/>
+
         </StackPanel>
 
         <!-- Ergebnisse und Details -->
         <Grid Grid.Row="1" Margin="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="107*" />
+                <ColumnDefinition Width="283*" />
             </Grid.ColumnDefinitions>
 
             <!-- Suchergebnisse -->
-            <ListView ItemsSource="{Binding Patients}" Margin="10" SelectedItem="{Binding SelectedPatient}">
+            <ListView ItemsSource="{Binding Patients}" Margin="10,10,10,10" SelectedItem="{Binding SelectedPatient}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID" DisplayMemberBinding="{Binding PatientId}" Width="50"/>
@@ -41,7 +44,7 @@
             </ListView>
 
             <!-- Patientendetails -->
-            <StackPanel Grid.Column="1" Margin="10">
+            <StackPanel Grid.Column="1" Margin="10,10,10,10">
                 <TextBlock Text="Patient Details" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
                 <TextBlock Text="First Name:" FontWeight="Bold"/>
                 <TextBlock Text="{Binding SelectedPatient.FirstName}" Margin="0,0,0,10"/>
@@ -69,13 +72,13 @@
 
                 <!-- Schaltflächen für Navigation -->
                 <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                    <Button Content="Address" Width="100" Command="{Binding NavigateToAddressCommand}" Margin="10,0,10,0" Background="#F5F5F5" BorderBrush="#1E90FF" BorderThickness="2"/>
-                    <Button Content="Images" Width="100" Command="{Binding NavigateToImagesCommand}" Margin="20,0,0,0" Background="#F5F5F5" BorderBrush="#1E90FF" BorderThickness="2"/>
+                    <Button Content="Address" Width="100" Command="{Binding NavigateToAddressCommand}" Margin="10,0,10,0" Foreground="White" Background="DarkSlateBlue" BorderBrush="#1E90FF" BorderThickness="2"/>
+                    <Button Content="Images" Width="100" Command="{Binding NavigateToImagesCommand}" Margin="20,0,0,0" Foreground="White" Background="DarkSlateBlue" BorderBrush="#1E90FF" BorderThickness="2"/>
                 </StackPanel>
             </StackPanel>
 
 
-        </Grid> 
+        </Grid>
 
     </Grid>
 </Window>
