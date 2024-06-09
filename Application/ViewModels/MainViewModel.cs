@@ -7,6 +7,8 @@ using WpfApp3.Services;
 using System;
 using WpfApp3.Views;
 using System.Net;
+using System.Windows;
+using System.Windows.Input;
 
 namespace WpfApp3.ViewModels
 {
@@ -31,13 +33,18 @@ namespace WpfApp3.ViewModels
             NavigateToAddressCommand = new RelayCommand(NavigateToAddress);
             NavigateToImagesCommand = new RelayCommand(NavigateToImages);
             AddPatientCommand = new RelayCommand(AddPatient);
+            LogoutCommand = new RelayCommand(Logout);
+            EditPatientCommand = new RelayCommand(EditPatient);
         }
 
         public IRelayCommand SearchPatientsCommand { get; }
         public IRelayCommand NavigateToAddressCommand { get; }
         public IRelayCommand NavigateToImagesCommand { get; }
         public IRelayCommand AddPatientCommand { get; }
-        private async Task SearchPatientsAsync()
+        public IRelayCommand LogoutCommand { get; }
+        public ICommand EditPatientCommand { get; }
+
+        public async Task SearchPatientsAsync()
         {
             if (string.IsNullOrWhiteSpace(SearchQuery))
             {
@@ -98,6 +105,29 @@ namespace WpfApp3.ViewModels
         {
             var addPatientView = new Views.AddPatientView(patients);
             addPatientView.Show();
+        }
+
+        private void EditPatient()
+        {
+            var addPatientView = new Views.Editor(selectedPatient);
+            addPatientView.Show();
+        }
+        private void Logout()
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var loginWindow = new LoginWindow();
+                loginWindow.Show();
+
+                // Schließen Sie alle Fenster außer das Login-Fenster
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window.GetType() != typeof(LoginWindow))
+                    {
+                        window.Close();
+                    }
+                }
+            });
         }
     }
 }

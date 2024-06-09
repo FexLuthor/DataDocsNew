@@ -2,6 +2,9 @@
 using System.Net;
 using System.Windows.Media.Imaging;
 
+// APIkey in a extra dokument 
+// Vielleicht auch in den ApiServises integrieren 
+
 namespace WpfApp3.Models
 {
     public class ImageData

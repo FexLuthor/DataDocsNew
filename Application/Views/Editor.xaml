@@ -1,0 +1,52 @@
+﻿<Window x:Class="WpfApp3.Views.Editor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewModels="clr-namespace:WpfApp3.ViewModels"
+        Title="Edit Patient Data" Height="438" Width="600">
+
+    <Grid Margin="10" Background="AliceBlue">
+        <StackPanel>
+            <TextBlock Text="Edit Patient Data" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="First Name:" FontWeight="Bold"/>
+            </StackPanel>
+            <TextBox Text="{Binding CurrentData.FirstName}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Last Name:" FontWeight="Bold"/>
+            </StackPanel>
+            <TextBox Text="{Binding CurrentData.LastName}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Birth Date:" FontWeight="Bold"/>
+            </StackPanel>
+            <TextBox Text="{Binding CurrentData.BirthDate}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Gender:" FontWeight="Bold"/>
+            </StackPanel>
+            <TextBox Text="{Binding CurrentData.Gender}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+
+            <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Phone:" FontWeight="Bold"/>
+                </StackPanel>
+                <TextBox Text="{Binding CurrentData.Phone}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+
+            <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Email:" FontWeight="Bold"/>
+                </StackPanel>
+                <TextBox Text="{Binding CurrentData.Email}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+
+            <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Notes:" FontWeight="Bold"/>
+                </StackPanel>
+                <TextBox Text="{Binding CurrentData.Notes}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button Content="Confirm Changes" Command="{Binding EditPatientCommand}" Width="100" Margin="5" Background="#F5F5F5" BorderBrush="#1E90FF" BorderThickness="2"/>
+                <Button Content="Cancel" Command="{Binding CancelCommand}" Width="100" Margin="5" Background="#F5F5F5" BorderBrush="#1E90FF" BorderThickness="2"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 
+
+
+//Optional Password in eine passwort Box umwandeln 
+
 namespace WpfApp3.ViewModels
 {
     public partial class LoginViewModel : ObservableObject
@@ -51,10 +55,14 @@ namespace WpfApp3.ViewModels
                         }
                     }
                 });
+                Username = string.Empty;
+                Password = string.Empty;
             }
             else
             {
                 ErrorMessage = "Invalid username or password";
+                Username = string.Empty;
+                Password = string.Empty;
             }
         }
     }

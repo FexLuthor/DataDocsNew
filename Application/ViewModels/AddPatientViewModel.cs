@@ -4,8 +4,10 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows;
 using WpfApp3.Models;
+using WpfApp3.Services;
 
 namespace WpfApp3.ViewModels
 {
@@ -20,7 +22,7 @@ namespace WpfApp3.ViewModels
         private string lastName;
 
         [ObservableProperty]
-        private string birthDate;
+        private DateTime birthDate;
 
         [ObservableProperty]
         private int gender;
@@ -34,47 +36,44 @@ namespace WpfApp3.ViewModels
         [ObservableProperty]
         private string notes;
 
+        [ObservableProperty]
+        private ImageData images;
+
         public AddPatientViewModel(ObservableCollection<PatientData> patients)
         {
             _patients = patients;
-            AddPatientCommand = new RelayCommand(AddPatient);
+            AddPatientCommand = new AsyncRelayCommand(AddPatientAsync);
             CancelCommand = new RelayCommand(Cancel);
         }
 
-        public IRelayCommand AddPatientCommand { get; }
+        public IAsyncRelayCommand AddPatientCommand { get; }
         public IRelayCommand CancelCommand { get; }
 
-        private void AddPatient()
+        private async Task AddPatientAsync()
         {
             // Validate input and add patient logic here
 
-            var maxId = _patients.Any() ? _patients.Max(p => p.PatientId) : 0;
+            //var maxId = _patients.Any() ? _patients.Max(p => p.PatientId) : 0;
+            string newPatient = $@"{{
+                ""patientId"":0,
+                ""firstName"":""{firstName}"",
+                ""lastName"":""{lastName}"",
+                ""gender"":{gender},
+                ""phone"":""{phone}"",
+                ""email"":""{email}"",
+                ""notes"":""{notes}""}}";
 
-            var newPatient = new PatientData
+            bool success = await ApiService.AddPatientAsync(newPatient);
+            if (success)
             {
-                PatientId = maxId + 1,
-                FirstName = FirstName,
-                LastName = LastName,
-                //BirthDate = BirthDate,
-                Gender = Gender,
-                Phone = Phone,
-                Email = Email,
-                Notes = Notes,
-               /* Address = new Address
-                {
-                    Street = "New Street",
-                    Number = "1",
-                    Town = "New Town",
-                    PostalCode = "12345"
-                },
-                Images = new ObservableCollection<ImageData>()
-               */
-            };
-
-            _patients.Add(newPatient);
-
-            // Close the window
-            Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+               // _patients.Add(newPatient);
+                // Close the window
+                Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+            }
+            else
+            {
+                MessageBox.Show("Failed to add patient to the backend.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Cancel()
