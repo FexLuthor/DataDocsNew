@@ -4,22 +4,25 @@
         xmlns:viewModels="clr-namespace:WpfApp3.ViewModels"
         Title="Add Patient" Height="438" Width="600">
 
-
-
     <Grid Margin="10" Background="AliceBlue">
-        <StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="0" Margin="0,0,10,0">
             <TextBlock Text="Add New Patient" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
 
-            <TextBlock Text="First Name:" FontWeight="Bold"/>
+            <TextBlock Text="First Name:" FontWeight="Bold"/> 
             <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2" />
 
             <TextBlock Text="Last Name:" FontWeight="Bold"/>
             <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
 
-            <TextBlock Text="Birth Date:" FontWeight="Bold"/>
+            <TextBlock> <Run Text="Birth Date:" FontWeight="Bold" /> <Run Text="(Format: YYYY-MM-DD)" FontWeight="Light"/> </TextBlock>
             <TextBox Text="{Binding BirthDate, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
 
-            <TextBlock Text="Gender:" FontWeight="Bold"/>
+            <TextBlock> <Run Text="Gender:" FontWeight="Bold"/> <Run Text="(male, female, diverse, other)" FontWeight="Light"/></TextBlock>
             <TextBox Text="{Binding Gender, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
 
             <TextBlock Text="Phone:" FontWeight="Bold"/>
@@ -30,8 +33,23 @@
 
             <TextBlock Text="Notes:" FontWeight="Bold"/>
             <TextBox Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+        </StackPanel>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="" Margin="0,0,0,20"/>
+            <TextBlock Text="Street:" FontWeight="Bold" Margin="0,0,0,0"/>
+            <TextBox Text="{Binding Street, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+
+            <TextBlock Text="Number:" FontWeight="Bold"/>
+            <TextBox Text="{Binding Number, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+
+            <TextBlock Text="Town:" FontWeight="Bold"/>
+            <TextBox Text="{Binding Town, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+
+            <TextBlock Text="Postal Code:" FontWeight="Bold"/>
+            <TextBox Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,50" BorderThickness="0,0,0,2"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0">
                 <Button Content="Add Patient" Command="{Binding AddPatientCommand}" Width="100" Margin="5" Background="#F5F5F5" BorderBrush="#1E90FF" BorderThickness="2"/>
                 <Button Content="Cancel" Command="{Binding CancelCommand}" Width="100" Margin="5" Background="#F5F5F5" BorderBrush="#1E90FF" BorderThickness="2"/>
             </StackPanel>

@@ -11,6 +11,9 @@ using WpfApp3.Services;
 using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Text.Json;
+using System.IO;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace WpfApp3.ViewModels
 {
@@ -18,13 +21,27 @@ namespace WpfApp3.ViewModels
     {
         public PatientData _currentData;
 
+        
+        private string? genderString;
         public EditorViewModel(PatientData currentData)
         {
-            _currentData = currentData;        
+            _currentData = currentData;
+            LoadData(currentData);
             EditPatientCommand = new AsyncRelayCommand(EditPatientAsync);
             CancelCommand = new RelayCommand(Cancel);
         }
-
+        public string GenderString
+        {
+            get => genderString;
+            set
+            {
+                if (genderString != value)
+                {
+                    genderString = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public IAsyncRelayCommand EditPatientCommand { get; }
         public IRelayCommand CancelCommand { get; }
 
@@ -40,31 +57,87 @@ namespace WpfApp3.ViewModels
                 }
             }
         }
+        public void LoadData(PatientData currentData)
+        {
+            _currentData = currentData;
+            switch (_currentData.Gender)
+            {
+                case 0:
+                    genderString = "male";
+                    break;
+                case 1:
+                    genderString = "female";
+                    break;
+                case 2:
+                    genderString = "diverse";
+                    break;
+                case 3:
+                    genderString = "other";
+                    break;
+                default:
+                    genderString = "";
+                    break;
+            }
+        }
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
         private async Task EditPatientAsync()
         {
-            // Validate input and add patient logic here
-            //                ""birthDate"":""{_currentData.BirthDate}"",
-            //var maxId = _patients.Any() ? _patients.Max(p => p.PatientId) : 0;
-            //string jsonbirthday = JsonConvert.SerializeObject(_currentData.BirthDate);
+            int Gender = 0;
+            switch (genderString)
+            {
+                case "male":
+                    Gender = 0;
+                    break;
+                case "female":
+                    Gender = 1;
+                    break;
+                case "diverse":
+                    Gender = 2;
+                    break;
+                case "other":
+                    Gender = 3;
+                    break;
+                default:
+                    Gender = 3;
+                    break;
+            }
+
             string AlteredPatient = $@"{{
                 ""patientId"":{_currentData.PatientId},
                 ""firstName"":""{_currentData.FirstName}"",
                 ""lastName"":""{_currentData.LastName}"",
-                ""gender"":{_currentData.Gender},
+                ""birthDate"":""{_currentData.BirthDate}"",
+                ""gender"":{Gender},
                 ""phone"":""{_currentData.Phone}"",
                 ""email"":""{_currentData.Email}"",
-                ""notes"":""{_currentData.Notes}""}}";
+                ""notes"":""{_currentData.Notes}"",
+                ""images"": [],
+                ""address"": {{
+                 ""addressId"": {_currentData.Address.AddressId},
+                 ""street"": ""{_currentData.Address.Street}"",
+                 ""number"": ""{_currentData.Address.Number}"",
+                 ""town"": ""{_currentData.Address.Town}"",
+                 ""postalCode"": ""{_currentData.Address.PostalCode}"",
+                 ""patientId"": {_currentData.Address.PatientId}
+                }}}}";
+                
 
             bool success = await ApiService.EditPatient(AlteredPatient,_currentData.PatientId);
             if (success)
             {
                 // _patients.Add(newPatient);
                 // Close the window
-                Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+                
+                MessageBox.Show("Changes have been saved. You can close the window now.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageBox.Show("Failed to add patient to the backend.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Failed to edit patient data. Please check your entries.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

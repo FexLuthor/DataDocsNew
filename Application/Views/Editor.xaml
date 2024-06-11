@@ -3,48 +3,53 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:viewModels="clr-namespace:WpfApp3.ViewModels"
         Title="Edit Patient Data" Height="438" Width="600">
-
     <Grid Margin="10" Background="AliceBlue">
-        <StackPanel>
-            <TextBlock Text="Edit Patient Data" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="First Name:" FontWeight="Bold"/>
-            </StackPanel>
-            <TextBox Text="{Binding CurrentData.FirstName}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+            <TextBlock Text="Add New Patient" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Last Name:" FontWeight="Bold"/>
-            </StackPanel>
+            <TextBlock Text="First Name:" FontWeight="Bold"/>
+            <TextBox Text="{Binding CurrentData.FirstName}" Margin="0,0,0,10" BorderThickness="0,0,0,2" />
+
+            <TextBlock Text="Last Name:" FontWeight="Bold"/>
             <TextBox Text="{Binding CurrentData.LastName}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Birth Date:" FontWeight="Bold"/>
-            </StackPanel>
+            <TextBlock> <Run Text="Birth Date:" FontWeight="Bold" /> <Run Text="(Format: YYYY-MM-DD)" FontWeight="Light"/></TextBlock>
             <TextBox Text="{Binding CurrentData.BirthDate}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Gender:" FontWeight="Bold"/>
-            </StackPanel>
-            <TextBox Text="{Binding CurrentData.Gender}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+            <TextBlock> <Run Text="Gender:" FontWeight="Bold"/> <Run Text="(male, female, diverse, other)" FontWeight="Light"/></TextBlock>
+            <TextBox Text="{Binding GenderString, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
 
-            <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Phone:" FontWeight="Bold"/>
-                </StackPanel>
-                <TextBox Text="{Binding CurrentData.Phone}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+            <TextBlock Text="Phone:" FontWeight="Bold"/>
+            <TextBox Text="{Binding CurrentData.Phone}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
 
-            <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Email:" FontWeight="Bold"/>
-                </StackPanel>
-                <TextBox Text="{Binding CurrentData.Email}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+            <TextBlock Text="Email:" FontWeight="Bold"/>
+            <TextBox Text="{Binding CurrentData.Email}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
 
-            <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Notes:" FontWeight="Bold"/>
-                </StackPanel>
-                <TextBox Text="{Binding CurrentData.Notes}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+            <TextBlock Text="Notes:" FontWeight="Bold"/>
+            <TextBox Text="{Binding CurrentData.Notes}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+        </StackPanel>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <Button Content="Confirm Changes" Command="{Binding EditPatientCommand}" Width="100" Margin="5" Background="#F5F5F5" BorderBrush="#1E90FF" BorderThickness="2"/>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="" Margin="0,0,0,20"/>
+            <TextBlock Text="Street:" FontWeight="Bold" Margin="0,0,0,0"/>
+            <TextBox Text="{Binding CurrentData.Address.Street}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+
+            <TextBlock Text="Number:" FontWeight="Bold"/>
+            <TextBox Text="{Binding CurrentData.Address.Number}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+
+            <TextBlock Text="Town:" FontWeight="Bold"/>
+            <TextBox Text="{Binding CurrentData.Address.Town}" Margin="0,0,0,10" BorderThickness="0,0,0,2"/>
+
+            <TextBlock Text="Postal Code:" FontWeight="Bold"/>
+            <TextBox Text="{Binding CurrentData.Address.PostalCode}" Margin="0,0,0,50" BorderThickness="0,0,0,2"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0">
+                <Button Content="Confirm" Command="{Binding EditPatientCommand}" Width="100" Margin="5" Background="#F5F5F5" BorderBrush="#1E90FF" BorderThickness="2"/>
                 <Button Content="Cancel" Command="{Binding CancelCommand}" Width="100" Margin="5" Background="#F5F5F5" BorderBrush="#1E90FF" BorderThickness="2"/>
             </StackPanel>
         </StackPanel>

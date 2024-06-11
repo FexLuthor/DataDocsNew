@@ -19,16 +19,16 @@ namespace WpfApp3.Models
                 switch (gender)
                 {
                     case 0:
-                        return "Male";
+                        return "male";
                     case 1:
-                        return "Female";
+                        return "female";
                     case 2:
-                        return "Diverse";
+                        return "diverse";
                     default:
-                        return "Unknown";
+                        return "other";
                 }
             }
-            return "Unknown";
+            return "unknown";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

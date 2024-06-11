@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,10 +23,10 @@ namespace WpfApp3.ViewModels
         private string lastName;
 
         [ObservableProperty]
-        private DateTime birthDate;
+        private string birthDate;
 
         [ObservableProperty]
-        private int gender;
+        private string gender;
 
         [ObservableProperty]
         private string phone;
@@ -37,7 +38,16 @@ namespace WpfApp3.ViewModels
         private string notes;
 
         [ObservableProperty]
-        private ImageData images;
+        private string street;
+
+        [ObservableProperty]
+        private string number;
+
+        [ObservableProperty]
+        private string town;
+
+        [ObservableProperty]
+        private string postalCode;
 
         public AddPatientViewModel(ObservableCollection<PatientData> patients)
         {
@@ -51,28 +61,55 @@ namespace WpfApp3.ViewModels
 
         private async Task AddPatientAsync()
         {
-            // Validate input and add patient logic here
-
-            //var maxId = _patients.Any() ? _patients.Max(p => p.PatientId) : 0;
+            int Gender = 0;
+            switch (gender)
+            {
+                case "male":
+                    Gender = 0;
+                    break;
+                case "female":
+                    Gender = 1;
+                    break;
+                case "diverse":
+                    Gender = 2;
+                    break;
+                case "other":
+                    Gender = 3;
+                    break;
+                default:
+                    Gender = 3;
+                    break;
+            }
             string newPatient = $@"{{
                 ""patientId"":0,
                 ""firstName"":""{firstName}"",
                 ""lastName"":""{lastName}"",
-                ""gender"":{gender},
+                ""birthDate"":""{birthDate}"",
+                ""gender"":{Gender},
                 ""phone"":""{phone}"",
                 ""email"":""{email}"",
-                ""notes"":""{notes}""}}";
+                ""notes"":""{notes}"",
+                ""images"": [],
+                ""address"": {{
+                 ""addressId"": 0,
+                  ""street"": ""{street}"",
+                  ""number"": ""{number}"",
+                  ""town"": ""{town}"",
+                  ""postalCode"": ""{postalCode}"",
+                  ""patientId"": 0
+                }}}}";
 
             bool success = await ApiService.AddPatientAsync(newPatient);
             if (success)
             {
-               // _patients.Add(newPatient);
+                // _patients.Add(newPatient);
                 // Close the window
+                MessageBox.Show("Succesfully added patient to the backend.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
             }
             else
             {
-                MessageBox.Show("Failed to add patient to the backend.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Failed to add patient to the backend. Please check your entries.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
